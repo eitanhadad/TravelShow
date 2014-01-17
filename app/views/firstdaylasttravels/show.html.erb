@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Friend name:</strong>
+  <%= @firstdaylasttravel.friend_name %>
+</p>
+
+<p>
+  <strong>Last travel:</strong>
+  <%= @firstdaylasttravel.last_travel %>
+</p>
+
+<p>
+  <strong>First day:</strong>
+  <%= @firstdaylasttravel.first_day %>
+</p>
+
+<%= link_to 'Edit', edit_firstdaylasttravel_path(@firstdaylasttravel) %> |
+<%= link_to 'Back', firstdaylasttravels_path %>

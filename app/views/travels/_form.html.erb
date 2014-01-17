@@ -1,0 +1,69 @@
+<%= form_for(@travel)  do |f| %>
+  <% if @travel.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@travel.errors.count, "error") %> prohibited this travel from being saved:</h2>
+
+      <ul>
+      <% @travel.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+
+<form class="form-horizontal">
+
+	<div class="container-fluid well">
+
+		<div class="span6">
+			<div class="row-fluid">
+	  			<div class="control-group">  
+            				<label class="control-label" for="input01"><%= f.label :front_page_image %></label>  
+            			    <div class="controls" id="divImage">  
+              				<%f.text_field :front_page_image %>
+					<%=f.file_field :front_page_image %>
+					<% if @travel.front_page_image%>
+						<%=image_tag( @travel.front_page_image, id: "edit_front_page_image", alt: "Icon", size: "200x200") %> 
+				        	<img class="imgEdit" id="opacityEditImage" src="http://placehold.it/150x150" style="display:none"></img>
+					<%end%>
+					
+            			    </div>  
+          			</div>  
+			</div>
+		</div>
+ 
+		<div class="span6"> 
+  			<div class="row-fluid"> 
+        			<fieldset>  
+          				<div class="control-group">  
+            					<label class="control-label" for="input01"><%= f.label :title %></label>  
+            				    <div class="controls">  
+              					<%= f.text_field :title %>   
+            				    </div>  
+          				</div>  
+          				<div class="control-group">  
+            				       <label class="control-label" for="input01"><%= f.label :travel_intro %></label>  
+            				   <div class="controls">  
+              				       <%= f.text_field :travel_intro %>  
+            				   </div>  
+          				</div>   
+          				<div class="control-group">  
+            					<label class="control-label" for="optionsCheckbox" reado>Checkbox (disabled)</label>  
+            				    <div class="controls">  
+              					<label class="checkbox">  
+                				<input type="checkbox"i id="optionsCheckbox" value="option1" disabled></label>  
+            				   </div>  
+          				</div>  
+          				<div class="form-actions">  
+            					<button type="submit" class="btn btn-primary">Save changes</button>  
+            					<button class="btn">Cancel</button>  
+          				</div>  
+        			</fieldset>
+			</div>
+		</div> 
+
+	</div>   
+</form>
+
+ <% end %>

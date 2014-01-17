@@ -1,0 +1,15 @@
+<table>
+  <% @friends = Friend.all %>
+  <tbody>
+    <% @friends.each do |friend| %>
+      <tr>
+        <td><%= friend.user_name %></td>
+        <td><%= friend.friend_user_name %></td>
+        <td><%= friend.active %></td>
+        <td><%= friend.active_since %></td>
+        <td><%= friend.created_at %></td>
+        <td><%=image_tag(friend.image, alt: "Icon", size: "30x45") %></td>
+      </tr>
+    <% end %>
+  </tbody>
+

@@ -1,0 +1,49 @@
+<%= form_for(@day) do |f| %>
+  <% if @day.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@day.errors.count, "error") %> prohibited this day from being saved:</h2>
+
+      <ul>
+      <% @day.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :travel_id %><br>
+    <%= f.text_field :travel_id %>
+  </div>
+  <div class="field">
+    <%= f.label :title %><br>
+    <%= f.text_field :title %>
+  </div>
+  <div class="field">
+    <%= f.label :country %><br>
+    <%= f.text_field :country %>
+  </div>
+  <div class="field">
+    <%= f.label :area %><br>
+    <%= f.text_field :area %>
+  </div>
+  <div class="field">
+    <%= f.label :hotel %><br>
+    <%= f.text_field :hotel %>
+  </div>
+  <div class="field">
+    <%= f.label :car %><br>
+    <%= f.text_field :car %>
+  </div>
+  <div class="field">
+    <%= f.label :comment %><br>
+    <%= f.text_field :comment %>
+  </div>
+  <div class="field">
+    <%= f.label :created_at %><br>
+    <%= f.date_select :created_at %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

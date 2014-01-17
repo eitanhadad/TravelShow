@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  friend_name: MyString
+  last_travel: MyString
+  first_day: 1
+
+two:
+  friend_name: MyString
+  last_travel: MyString
+  first_day: 1

@@ -1,0 +1,29 @@
+<%= form_for(@firstdaylasttravel) do |f| %>
+  <% if @firstdaylasttravel.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@firstdaylasttravel.errors.count, "error") %> prohibited this firstdaylasttravel from being saved:</h2>
+
+      <ul>
+      <% @firstdaylasttravel.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :friend_name %><br>
+    <%= f.text_field :friend_name %>
+  </div>
+  <div class="field">
+    <%= f.label :last_travel %><br>
+    <%= f.text_field :last_travel %>
+  </div>
+  <div class="field">
+    <%= f.label :first_day %><br>
+    <%= f.number_field :first_day %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

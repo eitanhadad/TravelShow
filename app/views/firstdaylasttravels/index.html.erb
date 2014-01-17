@@ -1,0 +1,31 @@
+<h1>Listing firstdaylasttravels</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Friend name</th>
+      <th>Last travel</th>
+      <th>First day</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @firstdaylasttravels.each do |firstdaylasttravel| %>
+      <tr>
+        <td><%= firstdaylasttravel.friend_name %></td>
+        <td><%= firstdaylasttravel.last_travel %></td>
+        <td><%= firstdaylasttravel.first_day %></td>
+        <td><%= link_to 'Show', firstdaylasttravel %></td>
+        <td><%= link_to 'Edit', edit_firstdaylasttravel_path(firstdaylasttravel) %></td>
+        <td><%= link_to 'Destroy', firstdaylasttravel, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Firstdaylasttravel', new_firstdaylasttravel_path %>

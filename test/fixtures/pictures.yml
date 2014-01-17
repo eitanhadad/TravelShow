@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  travel_id: MyString
+  String: MyString
+  image_url: MyString
+  day_id: MyString
+  String: MyString
+
+two:
+  travel_id: MyString
+  String: MyString
+  image_url: MyString
+  day_id: MyString
+  String: MyString

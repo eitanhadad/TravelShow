@@ -1,0 +1,82 @@
+        
+
+<style type="text/css">
+div.colorR {
+  border-right-width:1px;
+  border-right-style:ridge;
+  border-right-color:#C0C0C0
+  }
+</style>
+
+
+<div class="well">
+
+	<div class="row-fluid">  
+            <div class="span4 colorR">
+                <h4>Country/Area</h4>
+                <small>Today we are traveling in  <%= @day.country %> in an area called  <%= @day.area %>
+                </small>
+            </div>      
+	    <div class="span4 colorR">
+                <h5>Hotel</h5>
+               <small>Today we are planning to stay in the  <%= @day.hotel %> hotel</small>
+            </div>
+            <div class="span4">
+                <h5>Rental</h5>
+                <small>Today we have rented a car from   <%= @day.car %></small> 
+            </div>
+	</div> 
+</div>
+
+
+<!--
+<h5>
+  <strong>Travel:</strong>
+  <%= @day.travel_id %>
+</h5>
+
+ <p>
+  <strong>Title:</strong>
+  <%= @day.title %>
+
+<p>
+  <strong>Country:</strong>
+  <%= @day.country %>
+</p>
+
+
+<p>
+  <strong>Area:</strong>
+  <%= @day.area %>
+</p>
+</p>
+<p>
+  <strong>Hotel:</strong>
+  <%= @day.hotel %>
+</p> 
+
+<p>
+  <strong>Car:</strong>
+  <%= @day.car %>
+</p>
+
+
+
+<p>
+  <strong>Comment:</strong>
+  <%= @day.comment %>
+</p>
+
+<p>
+  <strong>Created at:</strong>
+  <%= @day.created_at %>
+</p>
+
+
+</div>
+</div>
+</div>
+
+
+<%= link_to 'Edit', edit_day_path(@day) %> |
+<%= link_to 'Back', days_path %> -->

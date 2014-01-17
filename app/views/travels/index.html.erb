@@ -1,0 +1,66 @@
+<style type="text/css">
+.btn-w3r-circ {  
+    background: #cb60b3; /* Old browsers */  
+    background: -moz-linear-gradient(top,  #cb60b3 0%, #ad1283 50%, #de47ac 100%); /* FF3.6+ */  
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#cb60b3), color-stop(50%,#ad1283), color-stop(100%,#de47ac)); 
+	/*   Chrome,Safari4+ */  
+    background: -webkit-linear-gradient(top,  #cb60b3 0%,#ad1283 50%,#de47ac 100%); /* Chrome10+,Safari5.1+ */  
+    background: -o-linear-gradient(top,  #cb60b3 0%,#ad1283 50%,#de47ac 100%); /* Opera 11.10+ */  
+    background: -ms-linear-gradient(top,  #cb60b3 0%,#ad1283 50%,#de47ac 100%); /* IE10+ */  
+    background: linear-gradient(to bottom,  #cb60b3 0%,#ad1283 50%,#de47ac 100%); /* W3C */  
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#cb60b3', endColorstr='#de47ac',GradientType=0 ); /* IE6-9 */
+    color:#fff; 
+    width: 150px;  
+    height: 150px;  
+    -moz-border-radius: 50%;  
+    -webkit-border-radius: 50%;  
+    border-radius: 50%;
+    }  
+
+.btn-w3r {  
+    background: #cb60b3; /* Old browsers */  
+    background: -moz-linear-gradient(top,  #cb60b3 0%, #ad1283 50%, #de47ac 100%); /* FF3.6+ */  
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#cb60b3), color-stop(50%,#ad1283), color-stop(100%,#de47ac)); 
+	/*   Chrome,Safari4+ */  
+    background: -webkit-linear-gradient(top,  #cb60b3 0%,#ad1283 50%,#de47ac 100%); /* Chrome10+,Safari5.1+ */  
+    background: -o-linear-gradient(top,  #cb60b3 0%,#ad1283 50%,#de47ac 100%); /* Opera 11.10+ */  
+    background: -ms-linear-gradient(top,  #cb60b3 0%,#ad1283 50%,#de47ac 100%); /* IE10+ */  
+    background: linear-gradient(to bottom,  #cb60b3 0%,#ad1283 50%,#de47ac 100%); /* W3C */  
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#cb60b3', endColorstr='#de47ac',GradientType=0 ); /* IE6-9 */
+    width: 150px;  
+    height: 150px;
+    }  
+
+
+
+
+
+
+
+</style>
+
+
+
+<ul class="thumbnails well">  
+			<%
+				@currentFriend = Friend.where(user_name: "Eitan").first
+				@myTravels = @currentFriend.travels.all
+				@myTravels.each do |travel_i| %>
+
+        <li class="span5">  
+          <div class="thumbnail">  
+            <%=image_tag(travel_i.front_page_image, id:travel_i.id, alt: "Icon", size: "250x200")%> 
+            <div class="caption">  
+              <h5><%=travel_i.title%></h5>    
+		<% editButtonId = "myTravelEditButton:"+travel_i.id.to_s %>
+              <p><a href="#" class="btn btn-success" id=<%=editButtonId%>>Edit</a> <a href="#" class="btn btn-warning">Delete</a></p>  
+            </div>  
+          </div>  
+        </li>   
+			<%end%>
+
+      </ul>  
+
+
+
+<a href="#" id="newTravelId">New Travel</a>

@@ -1,0 +1,40 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>User name:</strong>
+  <%= @friend.user_name %>
+</p>
+
+<p>
+  <strong>Friend user name:</strong>
+  <%= @friend.friend_user_name %>
+</p>
+
+<p>
+  <strong>Active:</strong>
+  <%= @friend.active %>
+</p>
+
+<p>
+  <strong>Active since:</strong>
+  <%= @friend.active_since %>
+</p>
+
+<p>
+  <strong>Created at:</strong>
+  <%= @friend.created_at %>
+</p>
+
+<p>
+  <strong>Image:</strong>
+  <%= @friend.image %>
+</p>
+
+<p>
+  <strong>Image:</strong>
+  <%= @friend.user_id %>
+</p>
+
+
+<%= link_to 'Edit', edit_friend_path(@friend) %> |
+<%= link_to 'Back', friends_path %>

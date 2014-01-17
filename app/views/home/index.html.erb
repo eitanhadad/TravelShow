@@ -1,0 +1,499 @@
+
+<style type="text/css">
+
+div.colorR {
+  border-right-width:1px;
+  border-right-style:ridge;
+  border-right-color:#C0C0C0;
+  }
+
+div.colorL {
+
+  border-left-width:1px;
+  border-left-style:ridge;
+  border-left-color:#C0C0C0;
+  }
+
+div.colorT {
+
+  border-top-width:1px;
+  border-top-style:ridge;
+  border-top-color:#C0C0C0;
+  }
+
+
+div {
+    position: relative;
+}
+
+.captionOpacity {
+
+    opacity: .5;
+    z-index: 999;
+    height: 40px;
+
+}
+
+p.first-letter {
+	text-transform: uppercase;
+}
+
+p {
+
+color: #424242;
+font-family: "Adobe Calson Pro", "Hoefler Text", Georgia, Garamond, Times, serif;
+letter-spacing: 0.1em;
+text-align: center;
+margin: 40px auto;
+text-transform: lowercase;
+line-height: 145%
+font-size: 14pt;
+font-variant: small-caps;
+
+}
+
+div.borderLi {
+border-radius:25px;
+box-shadow: 10px 10px 5px;
+background-color: #FFFFFF;
+}
+
+div.topMPanel {
+background-color: #3b5998;
+
+}
+
+div.mainPagePanel {
+background-color: #f7f7f7;
+
+}
+
+div.allBordered {
+
+  border-right-width:1px;
+  border-right-style:ridge;
+  border-right-color:#C0C0C0;
+  border-left-width:1px;
+  border-left-style:ridge;
+  border-left-color:#C0C0C0;
+  border-top-width:1px;
+  border-top-style:ridge;
+  border-top-color:#C0C0C0;
+  border-bottom-width:1px;
+  border-bottom-style:ridge;
+  border-bottom-color:#C0C0C0;
+
+
+
+}
+
+div.leaderBPanel {
+
+  border-right-width:1px;
+  border-right-style:ridge;
+  border-right-color:#C0C0C0;
+  border-left-width:1px;
+  border-left-style:ridge;
+  border-left-color:#C0C0C0;
+  border-top-width:1px;
+  border-top-style:ridge;
+  border-top-color:#C0C0C0;
+  border-bottom-width:1px;
+  border-bottom-style:ridge;
+  border-bottom-color:#C0C0C0;
+
+  background-color:#AABBEE;
+
+
+
+
+}
+
+div.centerAlign {
+  margin-left:auto;margin-right:auto;margin-bottom:auto;
+
+}
+
+div.borderCurve {
+border-radius:25px;
+
+}
+
+.imgEdit {
+    opacity: .8;
+    position: absolute;   
+    top: 100px;
+    left: 0px;
+    z-index: 999;
+    width: 200px;
+    height: 40px;
+}
+
+.row-fluid-limited {
+    width: 200px;
+
+}
+
+
+</style>
+
+
+
+<!-- -------------google API-------------------- -->
+
+<script src="http://www.google.com/jsapi" type="text/javascript"></script>
+<script type="text/javascript">
+
+    	var map;
+    	var ge;
+	    
+    google.load("earth", 1);
+    google.load("maps", "2.x");
+
+/**
+** initialization of  google API
+**/
+
+ function googleInit() {
+      map = new GMap2(document.getElementById('map3d'));
+      map.setCenter(new GLatLng(37, -122), 12);
+    
+      var mapui = map.getDefaultUI();
+      mapui.maptypes.physical = false;
+      map.setUI(mapui);
+    
+      // add 'Earth' as one of the map types
+      map.addMapType(G_SATELLITE_3D_MAP);
+    
+      // create a marker
+      var marker = new GMarker(new GLatLng(37, -122));
+      GEvent.addListener(marker, "click", function() {
+        var html = '<div style="width: 210px; padding-right: 10px">Hello world!</div>';
+        marker.openInfoWindowHtml(html);
+      });
+    
+      map.addOverlay(marker);
+      google.maps.Event.trigger(marker, "click");
+    
+      // create a polyline (LineString Placemark in KML)
+      var polyline = new GPolyline([
+          new GLatLng(37.04, -122.04),
+          new GLatLng(37.02, -122.02),
+          new GLatLng(37.03, -122.01),
+          new GLatLng(37.01, -121.99)
+        ], "#ff0000", 10);
+    
+      map.addOverlay(polyline);
+    
+      // do stuff with Earth when the user switches to it
+      GEvent.addListener(map, 'maptypechanged', function() {
+        if (ge)
+          return;
+    
+        map.getEarthInstance(function(pluginInstance) {
+          ge = pluginInstance;
+          doStuffWithEarth();
+        });
+      });
+    }
+    
+    function doStuffWithEarth() {
+      document.getElementById('installed-plugin-version').innerHTML =
+        ge.getPluginVersion().toString();
+    }
+
+
+
+
+/**
+** initializatioin of Content Panel in index.
+**/
+
+
+
+/**
+** redirecting to the first day of a travel
+**/
+
+function startTour(theArray)
+{
+
+	var jsonObject = eval(theArray);
+	while (jsonObject.length > 0) {
+		var currentJson = jsonObject.pop();
+			while(currentJson.length > 0)  {
+				var innerCurrentJson = currentJson.pop();
+				alert(innerCurrentJson.travel_id);
+				alert(innerCurrentJson.id);
+
+			}
+	}
+
+  
+	var contentUrl = "/days/2" + "/";i
+	$("#Travel").load(contentUrl);
+}
+
+
+function myTravelHandler(event)
+{
+
+	idValue = event.target.id;
+	splittedId = idValue.split(':');
+	travelIndex = splittedId[1];
+	postUrl = "/travels/" + travelIndex + "/edit/";
+
+	$.ajax({ url: postUrl , success: function(data) { $("#leaderboard").html(data); console.log("in Travel Edit");
+        $("#edit_front_page_image").mouseover(function(event) { $("#opacityEditImage").css('display', 'block'); });
+	$("#opacityEditImage").click (function(event) {$("#opacityEditImage").css('display', 'block'); console.log("in upload image click"); event.stopPropagation();});
+	$("#opacityEditImage").mouseover (function(event) {$("#opacityEditImage").css('display', 'block'); event.stopPropagation();});
+	$("#opacityEditImage").mouseout (function(event) {$("#opacityEditImage").css('display', 'none'); event.stopPropagation();});
+
+       $("#edit_front_page_image").mouseout(function(event) { $("#opacityEditImage").css('display', 'none');});
+	event.stopPropagation();}});
+	event.stopPropagation();
+}
+
+function newTravelHandler(event)
+{
+	newTravelUrl = "/travels/new/";
+	$.ajax({ url: newTravelUrl , success: function(data) { $("#leaderboard").html(data); console.log("in Travel Edit");}});
+	event.stopPropagation();
+}
+
+
+
+/**
+removes class from the current element
+root is the root of the structure
+**/
+function removeClassFromCurrentElement()
+{
+
+var listItem = $('#navigList > .active');
+console.log("list item is: " + listItem);
+listItem.removeClass("active");
+
+
+}
+
+
+
+
+function firstPageInit()
+{
+	$('#MyTravelList').click(function(event)
+ 	{		$.ajax({ url: "/travels/" , success: function(data) { $('#leaderboard').html(data);
+			var parentLiElement = $('#MyTravelList').parent('li'); 
+ 			console.log(parentLiElement);
+			removeClassFromCurrentElement();
+			parentLiElement.addClass("active");
+		        $("a[id^='myTravelEditButton']").click(function(event){ myTravelHandler(event);event.stopPropagation();});
+		        $('#newTravelId').click(newTravelHandler);}});
+		        event.stopPropagation();})
+	$('#inbox').click(function(event)
+	{
+		var parentLiElement = $('#inbox').parent('li'); 
+		removeClassFromCurrentElement();
+		parentLiElement.addClass("active");
+		console.log("i am trying to reload");
+		location.reload();})
+
+	var travelIndex = 1;
+	var contentUrl = "/travels/" + travelIndex + "/";
+	var imageUrl = "/pictures/1/";
+	var postUrl = "/posts?travelid="+travelIndex;
+	$.ajax({ url: postUrl , success: function(data) { $("#messageDiv").html(data); 	console.log("in messageDiv callback");
+	$('#commentLink').click(function(event)
+	{
+		console.log("commentLink link was triggered");
+	 if($('#currentPostArea').length <= 0)
+		{	
+
+			$('#messageDiv').append('<div class="row-fluid"> <div class="span12"> <div class="span1"> <%=image_tag("edoron.jpg", alt: "Icon", isize: "50x45") %> </div> <div class="span11"> <small> <textarea class="field span12" id="currentPostArea" row="6" placeholder="Write a comment..."></textarea> </small> </div> </div> </div>');
+$('#currentPostArea').focus();
+//$('#currentPostArea').scrollTo(function(event){ event.stopPropagation(); console.log("in travel callback");});//0,findPos(document.getElementById("currentPostArea")));
+//TODO add this content instead of the above
+
+			//check if button not already exists
+			if ($('#postMessageButton').length == 0) 
+ 			{
+				var addedLink = '<a id="postMessageButton" class="btn btn-small" href="#">Post</a>';
+				$('#buttonMessageDiv').append(addedLink);
+
+			}
+			//TODO fix the commented lines below
+			$('#postMessageButton').on('click', function(event) {
+			var messageContent = $('#currentPostArea').val();
+			$.post("/posts" , {post: { subject: "comment1" , message: messageContent, posted_by: "edoron" , posted_date: "" , travel_id: travelIndex }} , function(result) {console.log("data returned = "  + result); }, "json");
+			var textAreaVal = $('#currentPostArea').val;
+
+			if(textAreaVal != undefined && textAreaVal != "Write a comment..."  )
+			{
+				$('#currentPostArea').prop("disabled", true);
+				//$('#currentPostArea').prop("backgroundColor", "#A35522");
+			}
+
+			event.stopPropagation();})
+			$('#postMessages').append('</p>');
+		}
+			event.stopPropagation();
+
+
+	});  } });
+	$.ajax({ url: contentUrl , success: function(data) { $("#Travel").html(data); 	console.log("Calling Google Init"); googleInit();}});
+	//$("#Travel").load(contentUrl,  function(event){ event.stopPropagation(); console.log("Calling Google Init"); googleInit();})
+	//$("#Travelimages").load(imageUrl,  function(event){ console.log("in travelImages callback"); event.stopPropagation();}) 
+	
+	return false;
+
+
+
+}
+
+function friendImageClick(event)
+//TODO if id is null direct the request to a default page
+{
+	var travelIndex = event.target.id;
+	console.log("index is : "+ travelIndex);
+	var contentUrl = "/travels/" + travelIndex + "/";
+	var imageUrl = "/pictures/1/";
+	//$("#Travel").html("");
+	$("#Travel").load(contentUrl);
+	$("#Travelimages").load(imageUrl);
+	event.stopPropagation();
+}
+
+</script>
+
+<%require "#{Rails.root}/app/helpers/Home_Helper"%>
+
+
+
+
+<%user_id = "edoron"
+  @travelDaysArray = @travelDaysArray.to_json
+  initializeData(user_id)%>
+
+<div class="navbar navbar-fixed-top">  
+      <div class="navbar-inner">  
+        <div class="container-fluid topMPanel">  
+          <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">  
+            <span class="icon-bar"></span>  
+            <span class="icon-bar"></span>  
+            <span class="icon-bar"></span>  
+          </a>  
+          <a class="brand" href="#"><%=image_tag("family-travel.jpg" , id: "family-travel", alt: "Icon", size: "75x150") %></a>  
+          <div class="nav-collapse">  
+            <ul class="nav">  
+              <li class="active"><a href="#">Home</a></li>  
+              <li><a href="#about">About</a></li>  
+              <li><a href="#contact">Contact</a></li>  
+            </ul>  
+            <p class="navbar-text pull-right">Logged in as <a href="#">username</a></p>  
+          </div><!--/.nav-collapse -->  
+        </div>  
+      </div>  
+    </div>  
+
+
+
+
+    <div class="container-fluid" id="topContainer">  
+      <div class="row-fluid"> 
+        <div class="span10"> 
+ 		<div class="row-fluid">
+ 			<div class="span12">
+				<div class="span2">
+				 <div class="sidebar-nav">  
+            				<ul class="nav nav-list" id="navigList">  
+              					<li class="nav-header"><h6>Favorites</li> 
+              					<li class="active" id="inbox"><a href="#">Inbox</a></li>  
+             				        <li><a href="#"></a></li>  
+              					<li><a href="#" id="MyTravelList"><small>My Travels</a></li>  
+              					<li><a href="#">Community</a></li>  
+              					<li class="nav-header"><h6>Other</li>  
+              					<li><a href="#">application</a></li>  
+              					<li><a href="#">Posts</a></li>  
+              					<li><a href="#">Likes</a></li>  
+              					<li><a href="#">pictures</a></li>  
+              					<li><a href="#">Maps</a></li>
+           				</ul>  
+          			</div>  
+			       </div> 
+
+			       <div class="span10">
+			       </div>
+ 			       <div class="span10">
+          				<div class="leaderboard leaderBPanel" id="leaderboard"> 
+						 <div>
+					  		<div id="Travel"></div>  
+						</div>
+
+						<div class="row-fluid">
+							<div id="postMessages" >
+								<div id="messageDiv">
+								</div>
+
+								<div id="buttonMessageDiv">
+								</div>
+								
+							</div>
+						</div>
+
+
+						<div class="row-fluid">
+							<div class="span6">
+						 		<p id="Travelimages"></p>
+							</div> 
+							<div class="span6">
+								<div id="map3d" style="height: 60px;">Hello</div>
+							</div> 
+			 			</div>	             				
+					</div>
+			   </div>
+			</div>
+		 </div>  
+	</div>
+
+        <div class="span1">  
+          <div class="sidebar-nav">  
+            <ul class="nav nav-list">  
+              <li class="nav-header"><h6>Friends</li> 
+				
+	
+<!-- TODO iteration using Ajax?  as follows: current user, get list of friends, first friend->last travel->first day  is shown automaticaly, same functionality when image is clicked -->
+
+		<%       travel_index = 0
+				@currentFriends.each do |friend_l|
+					currentTravel = friend_l.travels.first 
+					if currentTravel != nil
+						travel_index = currentTravel.id
+					end%>
+				<li align="center"><a href="#"><%=image_tag(friend_l.image, id: travel_index, alt: "Icon", size: "50x45", :onClick =>"friendImageClick(event)") %></a></li>
+				<% travel_index = 0 end%>
+
+		           </ul>  
+          </div><!--/.well -->  
+        </div><!--/span1--> 
+
+
+
+    </div><!--/.fluid-container-->  
+      
+    <!-- Le javascript  
+    ================================================== -->  
+    <!-- Placed at the end of the document so the pages load faster --> 
+<!-- <script type="text/javascript" src="upclick-min.js"</script> -->
+ 
+<script type="text/javascript">
+//	window.onbeforeunload = firstPageInit();
+
+$(window).load(function(event){
+	//event.stopPropagation();
+	firstPageInit();
+	//$('#buttonMessageDiv').delegate('postMessageButton' , 'click' , function(event){ event.stopPropagation();});
+
+				});
+
+ </script>

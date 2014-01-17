@@ -1,0 +1,41 @@
+<h1>Listing days</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Travel</th>
+      <th>Title</th>
+      <th>Country</th>
+      <th>Area</th>
+      <th>Hotel</th>
+      <th>Car</th>
+      <th>Comment</th>
+      <th>Created at</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @days.each do |day| %>
+      <tr>
+        <td><%= day.travel_id %></td>
+        <td><%= day.title %></td>
+        <td><%= day.country %></td>
+        <td><%= day.area %></td>
+        <td><%= day.hotel %></td>
+        <td><%= day.car %></td>
+        <td><%= day.comment %></td>
+        <td><%= day.created_at %></td>
+        <td><%= link_to 'Show', day %></td>
+        <td><%= link_to 'Edit', edit_day_path(day) %></td>
+        <td><%= link_to 'Destroy', day, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Day', new_day_path %>
