@@ -1,4 +1,8 @@
 TravelShow::Application.routes.draw do
+  resources :experiences
+
+  resources :blobstores
+
   resources :data
 
   resources :posts
@@ -32,6 +36,9 @@ get "posts/index"
     
 get "data_files/index"
     resources :data_files
+    
+get "blobstores/index"
+    resources :blobstores
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
@@ -61,9 +68,9 @@ get "data_files/index"
   #   end
 
   # Example resource route with sub-resources:
-  #   resources :products do
-  #     resources :comments, :sales
-  #     resource :seller
+  #   resources :travels do
+  #     resources :friends
+  
   #   end
 
   # Example resource route with more complex sub-resources:

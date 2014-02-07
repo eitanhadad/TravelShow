@@ -41,15 +41,16 @@
 
 
 
+
 <ul class="thumbnails well">  
 			<%
-				@currentFriend = Friend.where(user_name: "Eitan").first
+				@currentFriend = Friend.where(user_name: @@userName).first
 				@myTravels = @currentFriend.travels.all
 				@myTravels.each do |travel_i| %>
 
         <li class="span5">  
           <div class="thumbnail">  
-            <%=image_tag(travel_i.front_page_image, id:travel_i.id, alt: "Icon", size: "250x200")%> 
+            <%=image_tag(travel_i.photo.url, id:travel_i.id, alt: "Icon", size: "250x200")%> 
             <div class="caption">  
               <h5><%=travel_i.title%></h5>    
 		<% editButtonId = "myTravelEditButton:"+travel_i.id.to_s %>
@@ -60,6 +61,7 @@
 			<%end%>
 
       </ul>  
+
 
 
 

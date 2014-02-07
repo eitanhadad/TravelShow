@@ -49,4 +49,4 @@ end
 gem "therubyracer"
 gem "less-rails"
 gem "twitter-bootstrap-rails"
-gem 'paperclip' , '~> 3.0.0'
+gem "paperclip", '~> 3.5.1'

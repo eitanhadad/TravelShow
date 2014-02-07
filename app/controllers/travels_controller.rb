@@ -15,6 +15,9 @@ class TravelsController < ApplicationController
   # GET /travels/new
   def new
     @travel = Travel.new
+    1.times do
+        experience = @travel.experiences.build
+    end
   end
 
   # GET /travels/1/edit
@@ -24,17 +27,20 @@ class TravelsController < ApplicationController
   # POST /travels
   # POST /travels.json
   def create
-    @travel = Travel.new(travel_params)
+      @travel = Travel.new(travel_params)
+    
+      #friend = Friend.find(params[:optionsCheckbox])
+      #@travel = friend.travels.new(travel_params)
 
-    respond_to do |format|
+      respond_to do |format|
       if @travel.save
-        format.html { redirect_to @travel, notice: 'Travel was successfully created.' }
-        format.json { render action: 'show', status: :created, location: @travel }
+          format.html { redirect_to @travel, notice: 'Travel was successfully created.' }
+          format.json { render action: 'show', status: :created, location: @travel }
       else
-        format.html { render action: 'new' }
-        format.json { render json: @travel.errors, status: :unprocessable_entity }
+          format.html { render action: 'new' }
+          format.json { render json: @travel.errors, status: :unprocessable_entity }
       end
-    end
+      end
   end
 
   # PATCH/PUT /travels/1
@@ -69,6 +75,6 @@ class TravelsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def travel_params
-        params.require(:travel).permit(:travel, :title, :travel_intro, :friend, :created_at, :front_page_image)
+        params.require(:travel).permit(:travel, :title, :travel_intro, :friend, :created_at, :friend_id, :front_page_image, :picture, :experiences_attributes => [:id, :title, :continent, :country, :city, :area, :recommended, :picture])
     end
 end

@@ -1,20 +1,20 @@
 
 <style type="text/css">
 
-div.colorR {
+.colorR {
   border-right-width:1px;
   border-right-style:ridge;
   border-right-color:#C0C0C0;
   }
 
-div.colorL {
+.colorL {
 
   border-left-width:1px;
   border-left-style:ridge;
   border-left-color:#C0C0C0;
   }
 
-div.colorT {
+.colorT {
 
   border-top-width:1px;
   border-top-style:ridge;
@@ -52,23 +52,18 @@ font-variant: small-caps;
 
 }
 
-div.borderLi {
-border-radius:25px;
-box-shadow: 10px 10px 5px;
-background-color: #FFFFFF;
-}
 
-div.topMPanel {
+.topMPanel {
 background-color: #3b5998;
 
 }
 
-div.mainPagePanel {
+.mainPagePanel {
 background-color: #f7f7f7;
 
 }
 
-div.allBordered {
+.allBordered {
 
   border-right-width:1px;
   border-right-style:ridge;
@@ -87,7 +82,7 @@ div.allBordered {
 
 }
 
-div.leaderBPanel {
+.leaderBPanel {
 
   border-right-width:1px;
   border-right-style:ridge;
@@ -102,19 +97,16 @@ div.leaderBPanel {
   border-bottom-style:ridge;
   border-bottom-color:#C0C0C0;
 
-  background-color:#AABBEE;
-
-
 
 
 }
 
-div.centerAlign {
+.centerAlign {
   margin-left:auto;margin-right:auto;margin-bottom:auto;
 
 }
 
-div.borderCurve {
+.borderCurve {
 border-radius:25px;
 
 }
@@ -257,10 +249,30 @@ function myTravelHandler(event)
 function newTravelHandler(event)
 {
 	newTravelUrl = "/travels/new/";
-	$.ajax({ url: newTravelUrl , success: function(data) { $("#leaderboard").html(data); console.log("in Travel Edit");}});
+	var counter = 0;
+	
+	$.ajax({ url: newTravelUrl , success: function(data) { $("#leaderboard").html(data); console.log("in Travel Edit");$('#expCollapsible').click(function(event) {
+
+counter ++;
+var collapseStatus = 'show';
+
+if (counter % 2 == 0)
+	collapseStatus = 'hide';
+
+$('#expCollapse').collapse(collapseStatus); event.stopPropagation();
+
+	/**idValue = event.target.id;
+	splittedId = idValue.split('_');
+	travelIndex = splittedId[1];
+	alert(travelIndex);
+
+
+	expUrl = "/experiences/new?travel_id="+travelIndex;
+	$.ajax({ url: expUrl , success: function(data) { var w=600; var h=520; var l = (screen.width/2) - (w/2); var r=(screen.height/2) - (h/2); popupWindow = window.open(expUrl, '_blank', 'location=no, toolbar=no, status=no,menubar=no, height='+h+'px, width='+w+'px, scrollbars=yes, status=no, left='+l+'px , right='+r+'px');if(popupWindow && !popupWindow.closed) popupWindow.focus(); event.stopPropagation();}});
+	event.stopPropagation(); **/
+ })}});
 	event.stopPropagation();
 }
-
 
 
 /**
@@ -371,9 +383,9 @@ function friendImageClick(event)
 
 
 
-<%user_id = "edoron"
+<%@@userName = "edoron"
   @travelDaysArray = @travelDaysArray.to_json
-  initializeData(user_id)%>
+  initializeData(@@userName)%>
 
 <div class="navbar navbar-fixed-top">  
       <div class="navbar-inner">  
@@ -425,7 +437,7 @@ function friendImageClick(event)
 			       <div class="span10">
 			       </div>
  			       <div class="span10">
-          				<div class="leaderboard leaderBPanel" id="leaderboard"> 
+          				<div class="leaderboard leaderBPanel"  id="leaderboard"> 
 						 <div>
 					  		<div id="Travel"></div>  
 						</div>

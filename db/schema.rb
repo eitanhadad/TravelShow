@@ -11,7 +11,22 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140101011843) do
+ActiveRecord::Schema.define(version: 20140124175808) do
+
+  create_table "blobstores", force: true do |t|
+    t.string   "name"
+    t.string   "continent"
+    t.string   "country"
+    t.string   "city"
+    t.string   "title"
+    t.string   "caption"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "picture_file_name"
+    t.string   "picture_content_type"
+    t.integer  "picture_file_size"
+    t.datetime "picture_updated_at"
+  end
 
   create_table "data", force: true do |t|
     t.datetime "created_at"
@@ -33,6 +48,22 @@ ActiveRecord::Schema.define(version: 20140101011843) do
     t.string   "comment"
     t.datetime "created_at"
     t.datetime "updated_at"
+  end
+
+  create_table "experiences", force: true do |t|
+    t.string   "title"
+    t.string   "continent"
+    t.string   "country"
+    t.string   "city"
+    t.string   "area"
+    t.string   "recommended"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "travel_id"
+    t.string   "picture_file_name"
+    t.string   "picture_content_type"
+    t.integer  "picture_file_size"
+    t.datetime "picture_updated_at"
   end
 
   create_table "firstdaylasttravels", force: true do |t|
@@ -81,6 +112,10 @@ ActiveRecord::Schema.define(version: 20140101011843) do
     t.string   "travel_intro"
     t.integer  "friend_id"
     t.string   "front_page_image"
+    t.string   "photo_file_name"
+    t.string   "photo_content_type"
+    t.integer  "photo_file_size"
+    t.datetime "photo_updated_at"
   end
 
   create_table "users", force: true do |t|
