@@ -1,0 +1,65 @@
+	<div class="container-fluid well">
+	      <div class="row-fluid span12">
+
+		<div class="span6">
+			<div class="row-fluid">
+	  			<div class="control-group">   
+            			    <div class="controls" id="divImage">  
+					<%=f.file_field :picture %>
+
+					<% if params[:action] != 'new'%>
+						<%=image_tag( @experience.picture.url, id: "edit_front_page_image", alt: "Icon", size: "200x200") %> 
+				        	<img class="imgEdit" id="opacityEditImage" src="http://placehold.it/150x150" style="display:none"></img>
+					<%end%>					
+            			    </div>  
+          			</div>  
+			</div>
+		</div>
+
+		<div class="span6">
+			<div class="row-fluid">
+
+          				<div class="control-group">  
+            					<label class="control-label" for="input01"><%= f.label :title %></label>  
+            				    <div class="controls">  
+              					<%= f.text_field :title %>   
+            				    </div>  
+          				</div>  
+          				<div class="control-group">  
+            				       <label class="control-label" for="input01"><%= f.label :continent %></label>  
+            				   <div class="controls">  
+              				       <%= f.text_field :continent %>  
+            				   </div>  
+          				</div> 
+					<div class="control-group">  
+            				       <label class="control-label" for="input01"><%= f.label :country %></label>  
+            				   <div class="controls">  
+              				       <%= f.text_field :country %>  
+            				   </div>  
+          				</div>  
+
+					<div class="control-group">  
+            				       <label class="control-label" for="input01"><%= f.label :city %></label>  
+            				   <div class="controls">  
+              				       <%= f.text_field :city %>  
+            				   </div>  
+          				</div> 
+
+					<div class="control-group">  
+            				       <label class="control-label" for="input01"><%= f.label :area %></label>  
+            				   <div class="controls">  
+              				       <%= f.text_field :area %>  
+            				   </div>  
+          				</div> 
+
+					<div class="control-group">  
+            				       <label class="control-label" for="input01"><%= f.label :recommended%></label>  
+            				   <div class="controls">  
+              				       <%= f.text_field :recommended %>  
+            				   </div>  
+          				</div> 
+			</div>
+		</div>
+	</div>
+</div>
+

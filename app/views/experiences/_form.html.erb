@@ -1,0 +1,104 @@
+<%= form_for(@experience) do |f| %>
+  <% if @experience.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@experience.errors.count, "error") %> prohibited this experience from being saved:</h2>
+
+      <ul>
+      <% @experience.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+
+
+
+
+
+
+<form class="form-horizontal">
+
+	<div class="container-fluid well">
+
+		<div class="span6">
+			<div class="row-fluid">
+	  			<div class="control-group">   
+            			    <div class="controls" id="divImage">  
+					<%=f.file_field :picture %>
+
+					<% if params[:action] != 'new'%>
+						<%=image_tag( @experience.picture.url, id: "edit_front_page_image", alt: "Icon", size: "200x200") %> 
+				        	<img class="imgEdit" id="opacityEditImage" src="http://placehold.it/150x150" style="display:none"></img>
+					<%end%>					
+            			    </div>  
+          			</div>  
+			</div>
+		</div>
+		<div style="display: none;">
+			<%= f.text_field :travel_id, :value => @experience.travel_id %>
+		</div>
+
+ 
+		<div class="span6"> 
+  			<div class="row-fluid"> 
+        			<fieldset>  
+          				<div class="control-group">  
+            					<label class="control-label" for="input01"><%= f.label :title %></label>  
+            				    <div class="controls">  
+              					<%= f.text_field :title %>   
+            				    </div>  
+          				</div>  
+          				<div class="control-group">  
+            				       <label class="control-label" for="input01"><%= f.label :continent %></label>  
+            				   <div class="controls">  
+              				       <%= f.text_field :continent %>  
+            				   </div>  
+          				</div> 
+					<div class="control-group">  
+            				       <label class="control-label" for="input01"><%= f.label :country %></label>  
+            				   <div class="controls">  
+              				       <%= f.text_field :country %>  
+            				   </div>  
+          				</div>  
+
+					<div class="control-group">  
+            				       <label class="control-label" for="input01"><%= f.label :city %></label>  
+            				   <div class="controls">  
+              				       <%= f.text_field :city %>  
+            				   </div>  
+          				</div> 
+
+					<div class="control-group">  
+            				       <label class="control-label" for="input01"><%= f.label :area %></label>  
+            				   <div class="controls">  
+              				       <%= f.text_field :area %>  
+            				   </div>  
+          				</div> 
+
+					<div class="control-group">  
+            				       <label class="control-label" for="input01"><%= f.label :recommended%></label>  
+            				   <div class="controls">  
+              				       <%= f.text_field :recommended %>  
+            				   </div>  
+          				</div> 
+ 
+          				<div class="control-group">  
+            					<label class="control-label" for="optionsCheckbox" reado>Checkbox (disabled)</label>  
+            				    <div class="controls">  
+              					<label class="checkbox">  
+                				<input type="checkbox" id="optionsCheckbox" value="<%=@user_id%>" disabled></input>  
+            				   </div>  
+          				</div>  
+          				<div class="form-actions">  
+            					<button type="submit" class="btn btn-primary">Save changes</button>  
+            					<button class="btn">Cancel</button>  
+          				</div>  
+        			</fieldset>
+			</div>
+		</div> 
+
+	</div>   
+</form>
+
+ <% end %>
