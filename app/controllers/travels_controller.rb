@@ -17,8 +17,8 @@ class TravelsController < ApplicationController
       #mc = Dalli::Client.new
       @travel = Travel.new
       #mc.set('travel' , @travel)
-    1.times do
-        @experience = @travel.experiences.build
+      1.times do
+          @experience = @travel.experiences.build
     end
     
   end
@@ -78,7 +78,7 @@ class TravelsController < ApplicationController
         1.times do
             @experience = @travel.experiences.build
         end
-        render '_exp1.html.erb'
+        render '_exp1.html.erb' 
     end
 
   private

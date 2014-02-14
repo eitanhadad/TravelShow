@@ -40,34 +40,39 @@
 </style>
 
 
-<legend>My Travels</legend>
+<legend>Travels<a href="#" id="newTravelId"> +</a></legend>
 
-<ul class="thumbnails">  
+<table class="table table-striped">  
+        <thead>  
+          <tr>  
+            <th>Sort by:</th>  
+            <th></th>  
+            <th>New Messages</th>  
+            <th>Viewers</th> 
+          </tr>  
+        </thead>  
+      <tbody> 
+
 			<%
 				@currentFriend = Friend.where(user_name: @@userName).first
 				@myTravels = @currentFriend.travels.all
 				@myTravels.each do |travel_i| %>
+					<% editButtonId = "myTravelEditButton:"+travel_i.id.to_s %>
 
-        
-          <div class="row-fluid span12">
-	   <li>
-	    <div class="span8">
-<!-- :style => {:medium => "120x120!"} -->
-            	<%=image_tag(travel_i.photo.url, id:travel_i.id, alt: "Icon", :height => "20%", :width => "20%" )%>
-		<% editButtonId = "myTravelEditButton:"+travel_i.id.to_s %>
-                <div><a href="#" id=<%=editButtonId%>>Edit</a> <a href="#">Delete</a></div>  
-	    </div>
-	    <div class="row-fluid span4">    
-		
-            </div> 
-	   </li>
-	  </div>    
-	<br>
-			<%end%>
 
-      </ul>  
+ 
+          <tr> 
+	    <td><%=image_tag(travel_i.photo.url, id:travel_i.id, alt: "Icon", :height => "20%", :width => "20%" )%></td> 
+            <td><a href="#" id=<%=editButtonId%>>Edit</a> <a href="#">Delete</a> </td>  
+            <td>20</td>  
+            <td>40</td>  
+          </tr>  
+<%end%>
+  
+        </tbody>  
+      </table> 
+        			
 
 
 
 
-<a href="#" id="newTravelId">New Travel</a>
