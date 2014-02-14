@@ -1,0 +1,91 @@
+<%= form_for(@blobstore) do |f| %>
+  <% if @blobstore.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@blobstore.errors.count, "error") %> prohibited this blobstore from being saved:</h2>
+
+      <ul>
+      <% @blobstore.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+
+
+<form class="form-horizontal">
+
+	<div class="container-fluid well">
+
+		<div class="span6">
+			<div class="row-fluid">
+	  			<div class="control-group">  
+            				<label class="control-label" for="input01"><%= f.label :front_page_image %></label>  
+            			    <div class="controls" id="divImage">  
+              				<%f.text_field :picture %>
+					<%=f.file_field :picture %>
+					<% if @blobstore.picture%>
+						<%=image_tag( @blobstore.picture.url, id: "edit_ay_picture", alt: "Icon", size: "200x200") %> 
+				        	<img class="imgEdit" id="opacityEditImage" src="http://placehold.it/150x150" style="display:none"></img>
+					<%end%>					
+            			    </div>  
+          			</div>  
+			</div>
+		</div>
+
+ 
+		<div class="span6"> 
+  			<div class="row-fluid"> 
+        			<fieldset>  
+          				<div class="control-group">  
+            					<label class="control-label" for="input01"><%= f.label :name %></label>  
+            				    <div class="controls">  
+              					<%= f.text_field :name %>   
+            				    </div>  
+          				</div>  
+          				<div class="control-group">  
+            				       <label class="control-label" for="input01"><%= f.label :continent %></label>  
+            				   <div class="controls">  
+              				       <%= f.text_field :continent %>  
+            				   </div>  
+          				</div>  
+					<div class="control-group">  
+            				       <label class="control-label" for="input01"><%= f.label :country %></label>  
+            				   <div class="controls">  
+              				       <%= f.text_field :country %>  
+            				   </div>  
+ 					 <div class="control-group">  
+            				       <label class="control-label" for="input01"><%= f.label :city %></label>  
+            				   <div class="controls">  
+              				       <%= f.text_field :city %>  
+            				   </div> 
+<div class="control-group">  
+            				       <label class="control-label" for="input01"><%= f.label :title %></label>  
+            				   <div class="controls">  
+              				       <%= f.text_field :title %>  
+            				   </div>  
+<div class="control-group">  
+            				       <label class="control-label" for="input01"><%= f.label :caption %></label>  
+            				   <div class="controls">  
+              				       <%= f.text_field :caption %>  
+            				   </div>   
+
+          				<div class="control-group">  
+            					<label class="control-label" for="optionsCheckbox" reado>Checkbox (disabled)</label>  
+            				    <div class="controls">  
+              					<label class="checkbox">  
+                				<input type="checkbox" id="optionsCheckbox" value="<%=@user_id%> disabled></label>  
+            				   </div>  
+          				</div>  
+          				<div class="form-actions">  
+            					<button type="submit" class="btn btn-primary">Save changes</button>  
+            					<button class="btn">Cancel</button>  
+          				</div>  
+        			</fieldset>
+			</div>
+		</div> 
+
+	</div>   
+</form>
+
+ <% end %>

@@ -11,7 +11,12 @@ TravelShow::Application.routes.draw do
 
   resources :firstdaylasttravels
 
-  resources :travels
+    
+    resources :travels do
+        collection do
+            get 'add_experience_partial'
+        end
+    end
 
   resources :days
   
@@ -24,9 +29,10 @@ resources :users
 
 get "days/index"
     resources :days
+
     
 get "travels/index"
-    resources :travels
+
     
 get "pictures/index"
     resources :pictures
@@ -39,6 +45,9 @@ get "data_files/index"
     
 get "blobstores/index"
     resources :blobstores
+    
+
+    
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

@@ -9,9 +9,9 @@ class Travel < ActiveRecord::Base
     validates_presence_of :title
     
     #def new_experience_attributes=(experience_attributes)
-    #   experience_attributes.each do |attr|
-    #       experiences.build(attr)
-    #   end
+    #experience_attributes.each do |attr|
+    #experiences.build(attr)
+    #end
     #end
 
 end

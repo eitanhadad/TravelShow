@@ -1,0 +1,86 @@
+<div>
+<% new_or_existing = experience.new_record? ? 'new' : 'existing' %>
+<% prefix = "travel[#{new_or_existing}_experience_attributes][]" %>
+
+<%=fields_for prefix, experience do |experience_form|  %>
+
+
+<p>
+Experience: 
+<br>
+
+
+
+<div class="container-fluid well">
+	      <div class="row-fluid span12">
+
+		<div class="span6">
+			<div class="row-fluid">
+	  			<div class="control-group">   
+            			    <div class="controls" id="divImage">  
+					<%=experience_form.file_field :picture %>
+					<% if params[:action] != 'new' and params[:action] != 'add_experience_partial'%>
+						<%=image_tag( @experience.picture.url, id: "edit_front_page_image", alt: "Icon", size: "200x200") %> 
+				        	<img class="imgEdit" id="opacityEditImage" src="http://placehold.it/150x150" style="display:none"></img>
+					<%end%>					
+            			    </div>  
+          			</div>  
+			</div>
+		</div>
+
+		<div class="span6">
+			<div class="row-fluid">
+				<fieldset>	
+          				<div class="control-group">  
+            					<label class="control-label" for="input01"><%= experience_form.label :title %></label>  
+            				    <div class="controls">  
+              					<%= experience_form.text_field :title %>   
+            				    </div>  
+          				</div>  
+          				<div class="control-group">  
+            				       <label class="control-label" for="input01"><%= experience_form.label :continent %></label>  
+            				   <div class="controls">  
+              				       <%= experience_form.text_field :continent %>  
+            				   </div>  
+          				</div> 
+					<div class="control-group">  
+            				       <label class="control-label" for="input01"><%= experience_form.label :country %></label>  
+            				   <div class="controls">  
+              				       <%= experience_form.text_field :country %>  
+            				   </div>  
+          				</div>  
+
+					<div class="control-group">  
+            				       <label class="control-label" for="input01"><%= experience_form.label :city %></label>  
+            				   <div class="controls">  
+              				       <%= experience_form.text_field :city %>  
+            				   </div>  
+          				</div> 
+
+					<div class="control-group">  
+            				       <label class="control-label" for="input01"><%= experience_form.label :area %></label>  
+            				   <div class="controls">  
+              				       <%= experience_form.text_field :area %>  
+            				   </div>  
+          				</div> 
+
+					<div class="control-group">  
+            				       <label class="control-label" for="input01"><%= experience_form.label :recommended%></label>  
+            				   <div class="controls">  
+              				       <%= experience_form.text_field :recommended %>  
+            				   </div>  
+          				</div> 
+			</div>
+</fieldset>	
+		</div>
+	</div>
+</div>
+
+
+<br>
+
+<%= link_to_function "remove", "$(this).up('.experience').remove()" %>
+</p>
+<%end %>
+
+</div>

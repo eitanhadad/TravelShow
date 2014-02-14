@@ -1,4 +1,6 @@
-<%= f.fields_for :experiences |ff|%>
+<%= form_for(@travel) do |f| %>
+<%= f.fields_for :experiences do |builder| %>
+
 
 <div class="container-fluid well">
 	      <div class="row-fluid span12">
@@ -7,9 +9,8 @@
 			<div class="row-fluid">
 	  			<div class="control-group">   
             			    <div class="controls" id="divImage">  
-					<%=ff.file_field :picture %>
-
-					<% if params[:action] != 'new'%>
+					<%=builder.file_field :picture %>
+					<% if params[:action] != 'new' and params[:action] != 'add_experience_partial'%>
 						<%=image_tag( @experience.picture.url, id: "edit_front_page_image", alt: "Icon", size: "200x200") %> 
 				        	<img class="imgEdit" id="opacityEditImage" src="http://placehold.it/150x150" style="display:none"></img>
 					<%end%>					
@@ -20,48 +21,49 @@
 
 		<div class="span6">
 			<div class="row-fluid">
-
           				<div class="control-group">  
-            					<label class="control-label" for="input01"><%= ff.label :title %></label>  
+            					<label class="control-label" for="input01"><%= builder.label :title %></label>  
             				    <div class="controls">  
-              					<%= ff.text_field :title %>   
+              					<%= builder.text_field :title %>   
             				    </div>  
           				</div>  
           				<div class="control-group">  
-            				       <label class="control-label" for="input01"><%= ff.label :continent %></label>  
+            				       <label class="control-label" for="input01"><%= builder.label :continent %></label>  
             				   <div class="controls">  
-              				       <%= ff.text_field :continent %>  
+              				       <%= builder.text_field :continent %>  
             				   </div>  
           				</div> 
 					<div class="control-group">  
-            				       <label class="control-label" for="input01"><%= ff.label :country %></label>  
+            				       <label class="control-label" for="input01"><%= builder.label :country %></label>  
             				   <div class="controls">  
-              				       <%= ff.text_field :country %>  
+              				       <%= builder.text_field :country %>  
             				   </div>  
           				</div>  
 
 					<div class="control-group">  
-            				       <label class="control-label" for="input01"><%= ff.label :city %></label>  
+            				       <label class="control-label" for="input01"><%= builder.label :city %></label>  
             				   <div class="controls">  
-              				       <%= ff.text_field :city %>  
+              				       <%= builder.text_field :city %>  
             				   </div>  
           				</div> 
 
 					<div class="control-group">  
-            				       <label class="control-label" for="input01"><%= ff.label :area %></label>  
+            				       <label class="control-label" for="input01"><%= builder.label :area %></label>  
             				   <div class="controls">  
-              				       <%= ff.text_field :area %>  
+              				       <%= builder.text_field :area %>  
             				   </div>  
           				</div> 
 
 					<div class="control-group">  
-            				       <label class="control-label" for="input01"><%= ff.label :recommended%></label>  
+            				       <label class="control-label" for="input01"><%= builder.label :recommended%></label>  
             				   <div class="controls">  
-              				       <%= ff.text_field :recommended %>  
+              				       <%= builder.text_field :recommended %>  
             				   </div>  
           				</div> 
-			</div>
+			</div>	
 		</div>
 	</div>
 </div>
-<%end%>
+
+<% end %>
+<% end %>

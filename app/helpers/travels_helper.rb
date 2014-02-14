@@ -5,8 +5,8 @@ module TravelsHelper
         @user_id = @meFriend.user_id
     end
     
-    def add_experience_link(title)
-        link_to_function title, "alert(title)" do |page|
+    def add_experience_link(name)
+        link_to_function name, "" do |page|
             page.insert_html :bottom, :experiences, :partial => 'experience', :object => Experience.new
         end
     

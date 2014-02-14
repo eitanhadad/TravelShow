@@ -40,24 +40,29 @@
 </style>
 
 
+<legend>My Travels</legend>
 
-
-<ul class="thumbnails well">  
+<ul class="thumbnails">  
 			<%
 				@currentFriend = Friend.where(user_name: @@userName).first
 				@myTravels = @currentFriend.travels.all
 				@myTravels.each do |travel_i| %>
 
-        <li class="span5">  
-          <div class="thumbnail">  
-            <%=image_tag(travel_i.photo.url, id:travel_i.id, alt: "Icon", size: "250x200")%> 
-            <div class="caption">  
-              <h5><%=travel_i.title%></h5>    
+        
+          <div class="row-fluid span12">
+	   <li>
+	    <div class="span8">
+<!-- :style => {:medium => "120x120!"} -->
+            	<%=image_tag(travel_i.photo.url, id:travel_i.id, alt: "Icon", :height => "20%", :width => "20%" )%>
 		<% editButtonId = "myTravelEditButton:"+travel_i.id.to_s %>
-              <p><a href="#" class="btn btn-success" id=<%=editButtonId%>>Edit</a> <a href="#" class="btn btn-warning">Delete</a></p>  
-            </div>  
-          </div>  
-        </li>   
+                <div><a href="#" id=<%=editButtonId%>>Edit</a> <a href="#">Delete</a></div>  
+	    </div>
+	    <div class="row-fluid span4">    
+		
+            </div> 
+	   </li>
+	  </div>    
+	<br>
 			<%end%>
 
       </ul>  

@@ -40,6 +40,7 @@ getfriendId(@@userName)%>
 			<div style="display: none;">
 				<%= f.text_field :friend_id, :value => @user_id %>
 			</div>
+			
 	    	</div>
 
  
@@ -58,18 +59,21 @@ getfriendId(@@userName)%>
               				       <%= f.text_field :travel_intro %>  
             				   </div>  
           				</div> 
-				</fieldset>
 			</div>
 	      </div>
 	</div>
 	</div>
+	
+<!--	<div id="experiences">
+		<#%= render :partial => 'experience', :collection => @travel.experiences %>
 
-		<fieldset>	
-		  <div id="expCollapse" class="collapse">	
-		    <%= f.fields_for :experiences do |builder| %>
-		      <%= render "exp", :f => builder %>
-		    <% end %>
-		  </div>
+	</div> -->
+
+	<!-- <p> <#%= add_experience_link "Add An Experience" %> </p> -->
+
+			
+			<p id="expCollapse22"> this is me</p>	
+			
           		<!--<div class="control-group">  
             				<label class="control-label" for="optionsCheckbox" reado>Checkbox (disabled)</label>  
             			<div class="controls">  
@@ -78,8 +82,7 @@ getfriendId(@@userName)%>
             			</div>  
           		</div>--> 
  
-			<div id="expCollapsible"><a href="#">Add Experience</a></div>
-
+			 <div id="expCollapsible"><a href="#">Add Experience</a></div>	
           		<div class="form-actions">  
             				<button type="submit" class="btn btn-primary">Save and continue</button>  
             				<button class="btn">Cancel</button>  

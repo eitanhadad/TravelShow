@@ -1,0 +1,38 @@
+<h1>Listing blobstores</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Continent</th>
+      <th>Country</th>
+      <th>City</th>
+      <th>Title</th>
+      <th>Caption</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @blobstores.each do |blobstore| %>
+      <tr>
+        <td><%= blobstore.name %></td>
+        <td><%= blobstore.continent %></td>
+        <td><%= blobstore.country %></td>
+        <td><%= blobstore.city %></td>
+        <td><%= blobstore.title %></td>
+        <td><%= blobstore.caption %></td>
+	<%=image_tag( blobstore.picture.url, alt: "Icon", size: "200x200") %>
+        <td><%= link_to 'Show', blobstore %></td>
+        <td><%= link_to 'Edit', edit_blobstore_path(blobstore) %></td>
+        <td><%= link_to 'Destroy', blobstore, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Blobstore', new_blobstore_path %>

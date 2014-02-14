@@ -1,5 +1,5 @@
 class TravelsController < ApplicationController
-  before_action :set_travel, only: [:show, :edit, :update, :destroy]
+    before_action :set_travel, only: [:show, :edit, :update, :destroy]
 
   # GET /travels
   # GET /travels.json
@@ -14,11 +14,15 @@ class TravelsController < ApplicationController
 
   # GET /travels/new
   def new
-    @travel = Travel.new
+      #mc = Dalli::Client.new
+      @travel = Travel.new
+      #mc.set('travel' , @travel)
     1.times do
-        experience = @travel.experiences.build
+        @experience = @travel.experiences.build
     end
+    
   end
+
 
   # GET /travels/1/edit
   def edit
@@ -66,6 +70,16 @@ class TravelsController < ApplicationController
       format.json { head :no_content }
     end
   end
+    
+    
+    
+    def add_experience_partial
+        @travel = Travel.new
+        1.times do
+            @experience = @travel.experiences.build
+        end
+        render '_exp1.html.erb'
+    end
 
   private
     # Use callbacks to share common setup or constraints between actions.
@@ -75,6 +89,7 @@ class TravelsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def travel_params
-        params.require(:travel).permit(:travel, :title, :travel_intro, :friend, :created_at, :friend_id, :front_page_image, :picture, :experiences_attributes => [:id, :title, :continent, :country, :city, :area, :recommended, :picture])
+        params.require(:travel).permit(:travel, :title, :travel_intro, :friend, :created_at, :friend_id, :front_page_image, :picture, :experiences_attributes => [:id, :title, :continent, :country, :city, :area, :travel_id, :recommended, :picture])
     end
+
 end

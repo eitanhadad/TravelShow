@@ -7,6 +7,10 @@
   border-right-color:#C0C0C0;
   }
 
+.clear {
+clear: both;
+}
+
 .colorL {
 
   border-left-width:1px;
@@ -222,7 +226,7 @@ function startTour(theArray)
 	}
 
   
-	var contentUrl = "/days/2" + "/";i
+	var contentUrl = "/days/2" + "/";
 	$("#Travel").load(contentUrl);
 }
 
@@ -235,7 +239,7 @@ function myTravelHandler(event)
 	travelIndex = splittedId[1];
 	postUrl = "/travels/" + travelIndex + "/edit/";
 
-	$.ajax({ url: postUrl , success: function(data) { $("#leaderboard").html(data); console.log("in Travel Edit");
+	$.ajax({ url: postUrl , success: function(data) { $("#leaderboard").html(data);
         $("#edit_front_page_image").mouseover(function(event) { $("#opacityEditImage").css('display', 'block'); });
 	$("#opacityEditImage").click (function(event) {$("#opacityEditImage").css('display', 'block'); console.log("in upload image click"); event.stopPropagation();});
 	$("#opacityEditImage").mouseover (function(event) {$("#opacityEditImage").css('display', 'block'); event.stopPropagation();});
@@ -246,32 +250,51 @@ function myTravelHandler(event)
 	event.stopPropagation();
 }
 
+function loadExperiencePartial(event)
+{
+
+	experiencePartialUrl = "/travels/add_experience_partial";
+	$.ajax({ url: experiencePartialUrl , success: function(data) {
+	//TODO - this is not working
+	console.log(data);
+	$("#expCollapse22").append(data); $("#expCollapse22").show(); event.preventDefault();	}});
+}
+
+function addPopupExperience(expUrl)
+{
+
+$.ajax({ url: expUrl , success: function(data) { var w=600; var h=520; var l = (screen.width/2) - (w/2); var r=(screen.height/2) - (h/2); popupWindow = window.open(expUrl, '_blank', 'location=no, toolbar=no, status=no,menubar=no, height='+h+'px, width='+w+'px, scrollbars=yes, status=no, left='+l+'px , right='+r+'px');if(popupWindow && !popupWindow.closed) popupWindow.focus(); event.stopPropagation();}});
+
+
+}
+
+
 function newTravelHandler(event)
 {
 	newTravelUrl = "/travels/new/";
 	var counter = 0;
 	
-	$.ajax({ url: newTravelUrl , success: function(data) { $("#leaderboard").html(data); console.log("in Travel Edit");$('#expCollapsible').click(function(event) {
+		
+	$.ajax({ url: newTravelUrl , success: function(data) { $("#leaderboard").html(data); $('#expCollapsible').click(function(event) {
+		loadExperiencePartial(event);
+				
+		//counter ++;
+		//var collapseStatus = 'show';
+		//if (counter % 2 == 0)
+		//collapseStatus = 'hide';
+		//$('#expCollapse').collapse(collapseStatus); event.stopPropagation();
 
-counter ++;
-var collapseStatus = 'show';
-
-if (counter % 2 == 0)
-	collapseStatus = 'hide';
-
-$('#expCollapse').collapse(collapseStatus); event.stopPropagation();
-
-	/**idValue = event.target.id;
-	splittedId = idValue.split('_');
-	travelIndex = splittedId[1];
-	alert(travelIndex);
+		//idValue = event.target.id;
+		//splittedId = idValue.split('_');
+		//travelIndex = splittedId[1];
+		//alert(travelIndex);
 
 
-	expUrl = "/experiences/new?travel_id="+travelIndex;
-	$.ajax({ url: expUrl , success: function(data) { var w=600; var h=520; var l = (screen.width/2) - (w/2); var r=(screen.height/2) - (h/2); popupWindow = window.open(expUrl, '_blank', 'location=no, toolbar=no, status=no,menubar=no, height='+h+'px, width='+w+'px, scrollbars=yes, status=no, left='+l+'px , right='+r+'px');if(popupWindow && !popupWindow.closed) popupWindow.focus(); event.stopPropagation();}});
-	event.stopPropagation(); **/
- })}});
-	event.stopPropagation();
+		//expUrl = "/experiences/new?travel_id="+travelIndex;
+		//addPopupExperience(expUrl);
+		event.stopPropagation(); 
+		})}});
+		event.stopPropagation();
 }
 
 

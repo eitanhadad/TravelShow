@@ -50,3 +50,6 @@ gem "therubyracer"
 gem "less-rails"
 gem "twitter-bootstrap-rails"
 gem "paperclip", '~> 3.5.1'
+
+gem 'rack-cache'
+gem 'dalli'
